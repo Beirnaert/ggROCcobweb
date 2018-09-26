@@ -1,0 +1,18 @@
+Package: ggROCcobweb
+Version: 0.0.2
+Date: 2018-09-26
+Title: Cobweb ggplot2 extension for plotting multi class ROC curves.
+Author: Charlie Beirnaert
+Maintainer: Charlie Beirnaert <charlie_beirnaert@icloud.com>
+Description: To Be Anounced.
+Depends:
+    R (>= 3.1.0)
+Imports:
+    ggplot2,
+Suggests:
+    knitr,
+    rmarkdown
+LazyData: true
+VignetteBuilder: knitr
+License: Apache License 2.0
+RoxygenNote: 6.0.1
