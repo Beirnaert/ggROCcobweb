@@ -1,32 +1,35 @@
 #' Theme for cobweb visualization
 #'
-#' To correctly plot the geom_cobweb this theme is required. 
-#' \code{theme_net} provides access to the regular ggplot2 theme, but removes any
-#' background, axes, and ensures an aspect ratio of 1 for better
-#' viewing of networks and graphs.
-#'
+#' \code{theme_cobweb} Provides the theme to the geom_cobweb ggplot2 function. It is advised
+#' to also add coord_equal() to the plot to achieve a cobweb with of equal lengths. 
+#' 
+#'  
 #' @param base_size base font size
 #' @param base_family base font family
 #'
 #' @examples
 #' library(ggplot2)
-#' library(MetaboMeeseeks)
-#' ggplot(AUC.df, aes(AUCs = AUCs, group = as.factor(type), colour =as.numeric(type))) + 
-#' geom_cobweb() + 
-#' theme_cobweb()
+#' n_comparison = 3
+#' AUC.df = data.frame(type = c(rep("ROC",6),rep("Random",6)),  
+#'                     AUCs = c(0.34, 1.00, 0.56, 0.40, 0.37, 0.45, rep(1/n_comparison, 6)))
+#' ggplot(AUC.df, aes(AUCs = AUCs,  colour = type)) +
+#'     geom_cobweb() + 
+#'     theme_cobweb() +
+#'     ggtitle("Test plot") +
+#'     coord_equal()
 #'
 #' @name theme_cobweb
 #' 
-#' @export
 #' @import ggplot2
+#' 
+#' @export
 theme_cobweb <- function (base_size = 11, base_family = "")
 {
     theme_grey(base_size = base_size, base_family = base_family) %+replace%
         theme(
             plot.background = element_rect(fill = "white", colour = "white"),
-            plot.margin = grid::unit(c(-0.2,0.4,-0.2,-0.6), unit="cm"),
             panel.background = element_rect(fill = "white", colour = "white"),
-            legend.box.spacing = grid::unit(-0.6, unit="cm"),
+            #legend.box.spacing = grid::unit(-0.6, unit="cm"),
             axis.line = element_blank(),
             axis.text = element_blank(),
             axis.ticks = element_blank(),
@@ -37,6 +40,7 @@ theme_cobweb <- function (base_size = 11, base_family = "")
             panel.border = element_blank(),
             panel.grid = element_blank(),
             
-            aspect.ratio = 1
-        )
+            plot.title = element_text(hjust = 0.5,
+                                      size = base_size+7)
+        ) 
 }
